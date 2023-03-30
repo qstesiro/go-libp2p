@@ -3,15 +3,15 @@ package main
 import (
 	"bufio"
 	"context"
-	"crypto/rand"
+	// "crypto/rand"
 	"flag"
 	"fmt"
 	"io"
 	"log"
-	mrand "math/rand"
+	// mrand "math/rand"
 
 	"github.com/libp2p/go-libp2p"
-	"github.com/libp2p/go-libp2p/core/crypto"
+	// "github.com/libp2p/go-libp2p/core/crypto"
 	"github.com/libp2p/go-libp2p/core/host"
 	"github.com/libp2p/go-libp2p/core/network"
 	"github.com/libp2p/go-libp2p/core/peer"
@@ -59,23 +59,23 @@ func main() {
 // makeBasicHost creates a LibP2P host with a random peer ID listening on the
 // given multiaddress. It won't encrypt the connection if insecure is true.
 func makeBasicHost(listenPort int, insecure bool, randseed int64) (host.Host, error) {
-	var r io.Reader
-	if randseed == 0 {
-		r = rand.Reader
-	} else {
-		r = mrand.New(mrand.NewSource(randseed))
-	}
+	// var r io.Reader
+	// if randseed == 0 {
+	// 	r = rand.Reader
+	// } else {
+	// 	r = mrand.New(mrand.NewSource(randseed))
+	// }
 
 	// Generate a key pair for this host. We will use it at least
 	// to obtain a valid host ID.
-	priv, _, err := crypto.GenerateKeyPairWithReader(crypto.RSA, 2048, r)
-	if err != nil {
-		return nil, err
-	}
+	// priv, _, err := crypto.GenerateKeyPairWithReader(crypto.RSA, 2048, r)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	opts := []libp2p.Option{
 		libp2p.ListenAddrStrings(fmt.Sprintf("/ip4/127.0.0.1/tcp/%d", listenPort)),
-		libp2p.Identity(priv),
+		// libp2p.Identity(priv), // 不提供内部会自动生成
 		libp2p.DisableRelay(),
 	}
 

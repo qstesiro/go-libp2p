@@ -1,3 +1,8 @@
 b main.main
 
+# echo
+b main.makeBasicHost
+b main.startListener
+b main.runSender
+
 g
